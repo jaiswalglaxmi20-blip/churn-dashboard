@@ -13,8 +13,8 @@ st.set_page_config(page_title="European Bank Churn Analytics", layout="wide")
 # ---------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("European_Bank.csv")
-
+       import os
+   df = pd.read_csv(os.path.join(os.path.dirname(__file__), "European_Bank.csv"))
     df["AgeGroup"] = pd.cut(
         df["Age"], bins=[0, 29, 45, 60, 200],
         labels=["<30", "30-45", "46-60", "60+"]
