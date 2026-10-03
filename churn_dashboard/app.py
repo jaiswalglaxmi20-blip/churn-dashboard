@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -13,8 +14,9 @@ st.set_page_config(page_title="European Bank Churn Analytics", layout="wide")
 # ---------------------------------------------------------
 @st.cache_data
 def load_data():
-       import os
-   df = pd.read_csv(os.path.join(os.path.dirname(__file__), "European_Bank.csv"))
+    csv_path = os.path.join(os.path.dirname(__file__), "European_Bank.csv")
+    df = pd.read_csv(csv_path)
+
     df["AgeGroup"] = pd.cut(
         df["Age"], bins=[0, 29, 45, 60, 200],
         labels=["<30", "30-45", "46-60", "60+"]
